@@ -3,7 +3,6 @@ spack:
   specs:
   - intel-mpi@2019.9.304
   - intel-oneapi-mpi@2021.7.0
-  - mpiwrapper@2.10.3 ^intel-oneapi-mpi@2021.7.0
   - mvapich2@2.3.7
   concretizer:
     unify: false
