@@ -15,3 +15,7 @@ spack:
   packages:
     all:
       require: '%gcc@12 target=x86_64_v2'
+  modules:
+    prefix_inspections:
+      lib: ["LD_LIBRARY_PATH"]
+      lib64: ["LD_LIBRARY_PATH"]
