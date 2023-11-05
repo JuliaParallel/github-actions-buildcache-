@@ -12,7 +12,7 @@ env:
 
 jobs:
   rebuild:
-    timeout-minutes: 90
+    timeout-minutes: 180
     runs-on: ubuntu-22.04
     permissions:
       packages: write
@@ -37,7 +37,7 @@ jobs:
       run: spack -e . concretize
 
     - name: Install
-      timeout-minutes: 60
+      timeout-minutes: 150
       run: |
         spack -e . env depfile -o Makefile
         make -Orecurse -j $(($(nproc) + 1)) SPACK_INSTALL_FLAGS=--no-check-signature
@@ -45,4 +45,4 @@ jobs:
     - name: Push packages and update index
       run: |
         spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --unsigned --update-index local-buildcache
-      if: ${{ github.event_name == 'push' }}
+      if: always()
