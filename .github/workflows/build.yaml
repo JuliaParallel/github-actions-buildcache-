@@ -6,10 +6,6 @@ on:
       - main
   pull_request:
 
-env:
-  SPACK_COLOR: always
-  SPACK_BACKTRACE: please
-
 jobs:
   rebuild:
     timeout-minutes: 180
@@ -20,18 +16,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Install Spack
-      run: |
-        git clone --depth=1 https://github.com/spack/spack.git
-        echo "${PWD}/spack/bin/" >> "${GITHUB_PATH}"
+    - name: Setup Spack
+      uses: spack/setup-spack@v2
 
     - name: Spack version
       run: spack debug report
 
     - name: Set authentication method for mirror
       if: ${{ github.event_name == 'push' }}
-      run: |
-        spack -e . mirror set --push --oci-username ${{ github.actor }} --oci-password "${{ secrets.GITHUB_TOKEN }}" local-buildcache
+      run: spack -e . mirror set --push --oci-username ${{ github.actor }} --oci-password "${{ secrets.GITHUB_TOKEN }}" local-buildcache
 
     - name: Concretize
       run: spack -e . concretize
@@ -40,9 +33,9 @@ jobs:
       timeout-minutes: 150
       run: |
         spack -e . env depfile -o Makefile
-        make -Orecurse -j $(($(nproc) + 1)) SPACK_INSTALL_FLAGS=--no-check-signature
+        make -Orecurse -j $(($(nproc) + 1))
 
     - name: Push packages and update index
       run: |
-        spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --unsigned --update-index local-buildcache
-      if: always()
+        spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --update-index local-buildcache
+      if: !cancelled()
