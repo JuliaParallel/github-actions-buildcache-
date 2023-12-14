@@ -12,8 +12,9 @@ spack:
       root: /opt/spack
       padded_length: 128
   mirrors:
-    spack-buildcache: oci://ghcr.io/spack/github-actions-buildcache
-    local-buildcache: oci://ghcr.io/JuliaParallel/github-actions-buildcache
+    local-buildcache:
+      url: oci://ghcr.io/JuliaParallel/github-actions-buildcache
+      signed: false
   packages:
     all:
       require: '%gcc@12 target=x86_64_v2'
