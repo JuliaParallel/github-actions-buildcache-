@@ -5,6 +5,7 @@ spack:
   - intel-oneapi-mpi@2021.7.0
   - julia@1.9.2 ^llvm~clang~gold~polly ^openblas threads=openmp +ilp64
   - mvapich2@2.3.7
+  - jq
   concretizer:
     unify: false
   config:
@@ -17,7 +18,7 @@ spack:
       signed: false
   packages:
     all:
-      require: '%gcc@12 target=x86_64_v2'
+      require: '%gcc@12 target=x86_64_v3'
   modules:
     prefix_inspections:
       lib: ["LD_LIBRARY_PATH"]
