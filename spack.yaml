@@ -6,7 +6,7 @@ spack:
   # - julia@1.9.2 ^llvm~clang~gold~polly ^openblas threads=openmp +ilp64
   - mvapich@3.0b
   - mvapich2@2.3.7
-  - jq
+  - jq@1.7.1
   concretizer:
     unify: false
   config:
