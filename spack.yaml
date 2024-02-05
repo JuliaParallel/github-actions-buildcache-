@@ -3,6 +3,7 @@ spack:
   specs:
   - intel-mpi@2019.9.304
   - intel-oneapi-mpi@2021.7.0
+  - intel-oneapi-mpi@2021.11.0
   # - julia@1.9.2 ^llvm~clang~gold~polly ^openblas threads=openmp +ilp64
   - mvapich@3.0b
   - mvapich2@2.3.7
