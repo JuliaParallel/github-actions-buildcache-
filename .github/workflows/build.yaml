@@ -41,6 +41,7 @@ jobs:
         # Build containers with two top-level specs
         spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --tag intel-mpi-jq --update-index local-buildcache jq@1.7.1 intel-mpi@2019.9.304
         spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --tag intel-oneapi-mpi-jq --update-index local-buildcache jq@1.7.1 intel-oneapi-mpi@2021.11.0
-        spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --tag mvapich2-jq --update-index local-buildcache jq@1.7.1 jq@1.7.1 mvapich2@2.3.7
-        spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --tag mvapich3-jq --update-index local-buildcache jq@1.7.1 jq@1.7.1 mvapich@3.0b
+        spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --tag mvapich2-jq --update-index local-buildcache jq@1.7.1 mvapich2@2.3.7
+        spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --tag mvapich3-jq --update-index local-buildcache jq@1.7.1 mvapich@3.0
+        spack -e . buildcache push -j $(($(nproc) + 1)) --base-image ubuntu:22.04 --tag openmpi5-jq --update-index local-buildcache jq@1.7.1 openmpi@5.0.2
       if: ${{ !cancelled() }}
