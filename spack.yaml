@@ -16,6 +16,7 @@ spack:
       padded_length: 128
     deprecated: true # Needed for legacy `intel-mpi`
   mirrors:
+    develop-developer-tools-manylinux2014: https://binaries.spack.io/develop/developer-tools-manylinux2014
     local-buildcache:
       url: oci://ghcr.io/JuliaParallel/github-actions-buildcache
       signed: false
@@ -24,5 +25,5 @@ spack:
       require: '%gcc@12 target=x86_64_v3'
   modules:
     prefix_inspections:
-      lib: ["LD_LIBRARY_PATH"]
-      lib64: ["LD_LIBRARY_PATH"]
+      lib: [LD_LIBRARY_PATH]
+      lib64: [LD_LIBRARY_PATH]
